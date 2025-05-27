@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+    Here are your sticky notes - {{ note.title }}
+{% endblock %}
+{% block content %}
+<h2>
+    {{ note.title }}
+</h2>
+<p>
+    {{ note.body }}
+</p>
+<p>
+    Last manufactured: {{ note.created_at }}
+</p>
+<div class = "revisited">
+    <a href="{% url 'update_sticky_notes' pk=note.pk %}" class="btn btn-primary">Update note</a>
+    <a href="{% url 'post_delete' pk=note.pk %}"  class="btn btn-danger">Delete note</a>
+    <a href="{% url 'read_sticky_notes' %}" class="btn btn-secondary">Back to notes list</a>
+</div>
+{% endblock %}

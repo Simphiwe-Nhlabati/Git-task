@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% comment %} <!DOCTYPE html> 
+<html lang="en"> 
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" 
+    crossorigin="anonymous"> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+    <link rel="stylesheet" href="style.css">
+    <title>
+    {% block title %}
+    Welcome to sticky notes
+    {% endblock title %}
+    </title> 
+</head> 
+<body> {% endcomment %}
+    
+    
+    {% block header %}
+    <h1 class="container text-center">
+    Here are your sticky notes {{ page_title }}
+    </h1>
+    {% endblock header %}
+    {% block content %}
+    
+        
+    <h2 class="container text-center">
+        Add sticky note {{ page_title }}
+    </h2>
+    <ul>
+        <br>
+        <a href="{% url 'create_sticky_notes' %}">
+        <button type="button" class="btn btn-primary">Add a sticky note</button>
+        </a>
+        <br>
+        {% for note in sticky_notes %}
+            <li>
+
+                <h3>{{ note.title }}</h3>
+                <p>{{ note.body }}</p>
+                <small>Last manufactured: {{ note.created_at }}</small>
+                <a href="{% url 'update_sticky_notes' note.id %}">
+                <button type="button" class="btn btn-info">Edit</button>
+                </a>
+                <a href="{% url 'delete_sticky_notes' note.id %}">
+                <button type="button" class="btn btn-danger">Delete</button>
+                </a>
+            </li>
+        <br>
+        {% empty %}
+            There are currently no notes
+        {% endfor %}
+    </ul>
+        
+{% endblock %}
