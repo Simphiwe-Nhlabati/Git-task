@@ -12,8 +12,8 @@ class TestModelNotes(TestCase):
     """
         
     def setUp(self):
-        Notes.objects.create(title='hello lil bro howzit',
-                             body='This is my lil bro so bright')
+        self.note = Notes.objects.create(title='hello lil bro howzit',
+                                         body='This is my lil bro so bright')
         
     def test_title(self):
         note = Notes.objects.get(id=1)
@@ -27,8 +27,8 @@ class TestModelNotes(TestCase):
 class TestViewsNotes(TestCase):
     
     def setUp(self):
-        Notes.objects.create(title='hello lil bro howzit',
-                             body='This is my lil bro so bright')
+        self.note = Notes.objects.create(title='hello lil bro howzit',
+                                         body='This is my lil bro so bright')
         
     def test_read_sticky_notes(self):
         response = self.client.get(reverse('read_sticky_notes'))
